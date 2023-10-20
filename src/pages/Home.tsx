@@ -1,5 +1,11 @@
+import Navbar from "../components/Navbar";
+
 const Homepage = () => {
-  return <div className="h-screen flex bg-red-50">slakjdklasj</div>;
+  return (
+    <div className="min-h-screen bg-neutral-950">
+      <Navbar />
+    </div>
+  );
 };
 
 export default Homepage;
