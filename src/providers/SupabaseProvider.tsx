@@ -11,9 +11,12 @@ const AuthProvider: React.FC<ComponentWithOnlyChildrenProp> = ({
   const [session, setSession] = useState<Session | null>(null);
 
   useEffect(() => {
-    SupabaseClient.auth.getSession().then(({ data: { session } }) => {
-      setSession(session);
-    });
+    SupabaseClient.auth
+      .getSession()
+      .then(({ data: { session } }) => {
+        setSession(session);
+      })
+      .catch((err) => console.error(err));
     const {
       data: { subscription },
     } = SupabaseClient.auth.onAuthStateChange((_event, session) => {

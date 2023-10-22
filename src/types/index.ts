@@ -7,3 +7,23 @@ export interface ErrorPage {
 export interface ComponentWithOnlyChildrenProp {
   children: React.ReactNode;
 }
+
+export interface UserProfile {
+  id?: string;
+  updated_at?: string;
+  username?: string;
+  follower_count?: number;
+  followers?: string[];
+}
+
+export interface Post {
+  title: string;
+  media_path: string;
+  author: string;
+  user_id: string;
+}
+
+export interface PostCollection extends Post {
+  created_at: string;
+  id: string;
+}

@@ -3,9 +3,14 @@ import ReactDOM from "react-dom/client";
 import router from "./routes";
 import { RouterProvider } from "react-router-dom";
 import "./index.css";
+import { GraphQLProvider } from "./providers/graphQLProvider";
+import { Toaster } from "react-hot-toast";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <GraphQLProvider>
+      <RouterProvider router={router} />
+    </GraphQLProvider>
+    <Toaster />
   </React.StrictMode>
 );

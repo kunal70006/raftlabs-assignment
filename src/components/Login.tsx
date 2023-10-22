@@ -7,7 +7,7 @@ const Login = () => {
     <div className="flex items-center justify-center min-h-screen">
       <Auth
         supabaseClient={SupabaseClient}
-        appearance={{ theme: ThemeSupa }}
+        appearance={{ theme: ThemeSupa, style: { input: { color: "white" } } }}
         providers={["github"]}
       />
     </div>
