@@ -194,7 +194,7 @@ const Profile = () => {
 
         <div className="bg-neutral-800 rounded-lg p-8">
           <h2 className="text-2xl">All Posts</h2>
-          <div className="mt-2 grid grid-cols-4 gap-4">
+          <div className="mt-2 grid xl:grid-cols-4 grid-cols-1 md:grid-cols-2 gap-4 lg:grid-cols-3">
             {postData &&
               postData.postsCollection.edges.map(
                 (post: { node: PostCollection }) => (

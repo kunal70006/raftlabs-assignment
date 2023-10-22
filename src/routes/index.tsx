@@ -21,6 +21,7 @@ const router = createBrowserRouter([
         <Profile />
       </AuthProvider>
     ),
+    errorElement: <ErrorPage />,
   },
 ]);
 

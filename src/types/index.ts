@@ -27,3 +27,9 @@ export interface PostCollection extends Post {
   created_at: string;
   id: string;
 }
+export interface Comment {
+  body: string;
+  author: string;
+  created_at: string;
+  post_id: string;
+}

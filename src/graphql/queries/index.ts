@@ -21,3 +21,20 @@ export function getPostsByUserIDQuery() {
     }
   `;
 }
+
+export function getCommentsByPostIDQuery() {
+  return gql`
+    query getCommentsByPostID($id: BigInt) {
+      commentsCollection(filter: { post_id: { eq: $id } }) {
+        edges {
+          node {
+            body
+            author
+            created_at
+            post_id
+          }
+        }
+      }
+    }
+  `;
+}
