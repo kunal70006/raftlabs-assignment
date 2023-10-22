@@ -7,6 +7,7 @@ import { toast } from "react-hot-toast";
 import { UserProfile } from "../types";
 import FollowUserCard from "../components/FollowUserCard";
 import Grid from "../common/Grid";
+import HomeFeed from "../components/HomeFeed";
 
 const Homepage = () => {
   const user = useUser();
@@ -25,6 +26,7 @@ const Homepage = () => {
   if (error) {
     toast.error(error.message);
   }
+
   return (
     <RootLayout>
       <Container>
@@ -48,6 +50,10 @@ const Homepage = () => {
                 )}
             </Grid>
           </div>
+        </div>
+        <div className="p-8 bg-neutral-800 rounded-lg">
+          <h2 className="text-2xl">Posts</h2>
+          <HomeFeed />
         </div>
       </Container>
     </RootLayout>

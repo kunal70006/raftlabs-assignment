@@ -56,3 +56,24 @@ export function getAllProfilesQuery() {
     }
   `;
 }
+
+export function getAllPostsQuery() {
+  return gql`
+    query getAllPosts{
+      postsCollection(
+        orderBy: [{ created_at: AscNullsFirst }]
+      ) {
+        edges {
+          node {
+            created_at
+            title
+            media_path
+            author
+            user_id
+            id
+          }
+        }
+      }
+    }
+  `;
+}
