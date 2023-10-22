@@ -38,3 +38,21 @@ export function getCommentsByPostIDQuery() {
     }
   `;
 }
+
+export function getAllProfilesQuery() {
+  return gql`
+    query getAllProfiles($id: ID!) {
+      profilesCollection(filter: { id: { neq: $id } }) {
+        edges {
+          node {
+            id
+            updated_at
+            username
+            follower_count
+            following
+          }
+        }
+      }
+    }
+  `;
+}

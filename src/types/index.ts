@@ -12,8 +12,8 @@ export interface UserProfile {
   id?: string;
   updated_at?: string;
   username?: string;
-  follower_count?: number;
-  followers?: string[];
+  follower_count?: string;
+  following?: string[];
 }
 
 export interface Post {

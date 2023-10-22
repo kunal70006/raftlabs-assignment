@@ -53,9 +53,11 @@ const PostComponent: React.FC<{ post: PostCollection }> = ({ post }) => {
           {doesPostHaveComments(data.commentsCollection.edges) ? (
             <div className="mt-8 font-semibold">Comments</div>
           ) : null}
-          {data.commentsCollection.edges.map((comment: { node: Comment }) => (
-            <CommentComponent comment={comment.node} />
-          ))}
+          {data.commentsCollection.edges.map(
+            (comment: { node: Comment }, index: number) => (
+              <CommentComponent comment={comment.node} key={index} />
+            )
+          )}
         </div>
       ) : null}
     </div>

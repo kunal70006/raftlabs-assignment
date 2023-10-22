@@ -13,6 +13,8 @@ import { SupabaseClient } from "../clients/Supabase.client";
 import toast from "react-hot-toast/headless";
 import { getPostsByUserIDQuery } from "../graphql/queries";
 import PostComponent from "../components/Post";
+import Container from "../common/Container";
+import Grid from "../common/Grid";
 
 const DEFAULT_POST = {
   author: "",
@@ -125,7 +127,7 @@ const Profile = () => {
 
   return (
     <RootLayout>
-      <div className="bg-neutral-900 mt-12 lg:mx-24 text-white rounded-lg p-8 flex flex-col gap-12">
+      <Container>
         <div>
           <h1 className="text-4xl">Profile</h1>
         </div>
@@ -143,7 +145,7 @@ const Profile = () => {
             />
           </div>
           <div className="flex gap-4 items-baseline">
-            <p className="mt-4">Followers: {user?.follower_count}</p>
+            <p className="mt-4">following: {user?.follower_count}</p>
           </div>
           {!isLoading ? (
             <button
@@ -194,16 +196,16 @@ const Profile = () => {
 
         <div className="bg-neutral-800 rounded-lg p-8">
           <h2 className="text-2xl">All Posts</h2>
-          <div className="mt-2 grid xl:grid-cols-4 grid-cols-1 md:grid-cols-2 gap-4 lg:grid-cols-3">
+          <Grid>
             {postData &&
               postData.postsCollection.edges.map(
-                (post: { node: PostCollection }) => (
-                  <PostComponent post={post.node} />
+                (post: { node: PostCollection }, index: number) => (
+                  <PostComponent post={post.node} key={index} />
                 )
               )}
-          </div>
+          </Grid>
         </div>
-      </div>
+      </Container>
     </RootLayout>
   );
 };

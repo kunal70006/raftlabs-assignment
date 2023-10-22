@@ -20,3 +20,23 @@ export function createPostMutation() {
     }
   `;
 }
+
+export function updateFollowersMutation() {
+  return gql`
+    mutation updateFollowers($id:UUID!, $following:[UUID]){
+      updateprofilesCollection(filter:{id:{eq:$id}}, set:{following:$following}){
+        affectedCount
+      }
+    }
+  `;
+}
+
+export function updateFollowerCountMutation() {
+  return gql`
+    mutation updateFollowers($id:UUID!, $follower_count:Int){
+      updateprofilesCollection(filter:{id:{eq:$id}}, set:{follower_count:$follower_count}){
+        affectedCount
+      }
+    }
+  `;
+}
