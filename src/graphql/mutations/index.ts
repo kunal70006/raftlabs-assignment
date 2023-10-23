@@ -40,3 +40,13 @@ export function updateFollowerCountMutation() {
     }
   `;
 }
+
+export function createCommentMutation() {
+  return gql`
+  mutation createComment($authorObj:[commentsInsertInput!]!){
+    insertIntocommentsCollection(objects:$authorObj){
+      affectedCount
+    }
+  }
+`
+}

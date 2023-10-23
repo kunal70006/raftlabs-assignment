@@ -6,19 +6,24 @@ import useLoadImage from "../hooks/usePostImage";
 import moment from "moment";
 import Loader from "../common/Loader";
 import CommentComponent from "./Comments";
+import Input from "./Input";
 
-const PostComponent: React.FC<{ post: PostCollection }> = ({ post }) => {
+const PostComponent: React.FC<{
+  post: PostCollection;
+  enableUserToPostComments?: boolean;
+}> = ({ post, enableUserToPostComments = false }) => {
   const imageURL = useLoadImage(post);
   const { data, loading, error } = useQuery(getCommentsByPostIDQuery(), {
     variables: {
       id: parseInt(post.id),
     },
+    fetchPolicy: "network-only",
   });
 
   if (error) return toast.error(error.message);
 
   const doesPostHaveComments = (comments: { node: Comment }[]) => {
-    return comments.filter((com) => com.node.post_id === post.id).length > 0;
+    return comments?.filter((com) => com.node.post_id === post.id).length > 0;
   };
 
   return (
@@ -48,18 +53,22 @@ const PostComponent: React.FC<{ post: PostCollection }> = ({ post }) => {
         </div>
       ) : null}
 
-      {data ? (
-        <div>
-          {doesPostHaveComments(data.commentsCollection.edges) ? (
-            <div className="mt-8 font-semibold">Comments</div>
-          ) : null}
-          {data.commentsCollection.edges.map(
-            (comment: { node: Comment }, index: number) => (
-              <CommentComponent comment={comment.node} key={index} />
-            )
-          )}
-        </div>
-      ) : null}
+      <div>
+        {doesPostHaveComments(data?.commentsCollection?.edges) ||
+        enableUserToPostComments ? (
+          <div className="mt-8 font-semibold">Comments</div>
+        ) : null}
+        {data ? (
+          <div className="max-h-[100px] overflow-y-auto">
+            {data?.commentsCollection?.edges.map(
+              (comment: { node: Comment }, index: number) => (
+                <CommentComponent comment={comment.node} key={index} />
+              )
+            )}
+          </div>
+        ) : null}
+        {enableUserToPostComments ? <Input postID={post.id} /> : null}
+      </div>
     </div>
   );
 };

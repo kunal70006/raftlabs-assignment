@@ -20,14 +20,14 @@ const Navbar = () => {
       </div>
       <div className="flex gap-8">
         <div className="flex flex-col items-center text-white text-sm gap-1">
-          <Icon size="36" route="profile">
+          <Icon size="36" route="/profile">
             <BiUser />
           </Icon>
           <p className="">Profile</p>
         </div>
 
         <div className="flex flex-col items-center text-white text-sm gap-1">
-          <Icon size="36" route="following">
+          <Icon size="36" route="/following">
             <BiUserPlus />
           </Icon>
           <p className="">Tags</p>
