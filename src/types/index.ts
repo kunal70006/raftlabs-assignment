@@ -33,3 +33,15 @@ export interface Comment {
   created_at: string;
   post_id: string;
 }
+
+export interface ButtonProps {
+  className?: string
+  disabled?: boolean
+  children?: React.ReactNode
+  onClick?: () => void
+}
+
+export interface TagModalProps {
+  isOpen: boolean
+  closeModal: () => void
+}

@@ -139,6 +139,11 @@ const Profile = () => {
               type="text"
               className="bg-neutral-600 rounded-lg focus:outline-none text-base pl-4 py-1 disabled:bg-neutral-800"
               value={user?.username ? user.username : ""}
+              onKeyDown={(ev) => {
+                if (ev.key === " ") {
+                  ev.preventDefault();
+                }
+              }}
               onChange={(ev) =>
                 setUser((u) => ({ ...u, username: ev.target.value }))
               }

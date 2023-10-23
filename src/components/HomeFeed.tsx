@@ -32,7 +32,12 @@ const HomeFeed = () => {
   return (
     <Grid className="xl:grid-cols-3 lg:grid-cols-2 gap-24">
       {feedData.map((post, idx) => (
-        <PostComponent post={post} key={idx} enableUserToPostComments />
+        <PostComponent
+          post={post}
+          key={idx}
+          enableUserToPostComments
+          enableTag
+        />
       ))}
     </Grid>
   );
