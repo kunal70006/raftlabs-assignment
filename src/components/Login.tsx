@@ -7,8 +7,10 @@ const Login = () => {
     <div className="flex items-center justify-center min-h-screen">
       <Auth
         supabaseClient={SupabaseClient}
-        appearance={{ theme: ThemeSupa, style: { input: { color: "white" } } }}
+        appearance={{ theme: ThemeSupa }}
+        theme="dark"
         providers={["github"]}
+        redirectTo="/profile"
       />
     </div>
   );
