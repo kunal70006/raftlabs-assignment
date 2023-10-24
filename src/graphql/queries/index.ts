@@ -103,3 +103,17 @@ export function getTagsByUserIDQuery() {
     }
   `;
 }
+
+export function getUserByUserIDQuery() {
+  return gql`
+    query getUserByUserID($id: String) {
+      profilesCollection(filter: { id: { eq: $id } }) {
+        edges {
+          node {
+            username
+          }
+        }
+      }
+    }
+  `;
+}

@@ -53,13 +53,12 @@ const Tags = () => {
             {data &&
               data?.tagsCollection?.edges?.map(
                 (post: { node: TaggedPost }, idx: number) => (
-                  <div key={idx}>
-                    <PostComponent post={post.node.posts} key={idx} />
-                    <div className="flex justify-between mt-2 px-4 text-white/80 italic">
-                      <p className="">Tagged by</p>
-                      <p className="">{post.node.profiles.username}</p>
-                    </div>
-                  </div>
+                  <PostComponent
+                    post={post.node.posts}
+                    key={idx}
+                    showTagsContainer
+                    userID={post.node.tagged_by}
+                  />
                 )
               )}
           </Grid>

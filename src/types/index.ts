@@ -65,6 +65,8 @@ export interface PostProps {
   post: PostCollection;
   enableUserToPostComments?: boolean;
   enableTag?: boolean;
+  showTagsContainer?: boolean;
+  userID?: string;
 }
 
 export interface IconProps extends ComponentWithOnlyChildrenProp {
