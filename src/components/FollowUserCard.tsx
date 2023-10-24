@@ -28,6 +28,7 @@ const FollowUserCard: React.FC<{
         {
           query: getAllProfilesQuery(),
           variables: { id: user?.id },
+          // we don't want to cache this
           fetchPolicy: "network-only",
         },
       ],
@@ -41,6 +42,7 @@ const FollowUserCard: React.FC<{
     onError(error) {
       toast.error(error.message);
     },
+    // same with this
     fetchPolicy: "network-only",
   });
 
@@ -56,6 +58,8 @@ const FollowUserCard: React.FC<{
             follower_count: data!.follower_count! - 1,
           },
         });
+        // reloading the page since there's no easy way to update the logged in user
+        // to show the posts
         navigate(0);
       });
     } else {

@@ -23,7 +23,6 @@ const HomeFeed = () => {
       });
       setFeedData(arr);
     },
-    fetchPolicy: "network-only",
   });
 
   if (error) {

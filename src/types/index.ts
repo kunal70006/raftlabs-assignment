@@ -66,3 +66,8 @@ export interface PostProps {
   enableUserToPostComments?: boolean;
   enableTag?: boolean;
 }
+
+export interface IconProps extends ComponentWithOnlyChildrenProp {
+  size?: string;
+  route: string;
+}

@@ -36,6 +36,7 @@ const Input: React.FC<{ postID: string }> = ({ postID }) => {
       },
       refetchQueries: [
         {
+          // refetch the comments on that particular post to show the added comment
           query: getCommentsByPostIDQuery(),
           variables: { id: parseInt(postID) },
         },

@@ -1,11 +1,6 @@
 import { IconContext } from "react-icons";
-import { ComponentWithOnlyChildrenProp } from "../types";
+import { IconProps } from "../types";
 import { Link } from "react-router-dom";
-
-interface IconProps extends ComponentWithOnlyChildrenProp {
-  size?: string;
-  route: string;
-}
 
 const Icon: React.FC<IconProps> = ({ children, size, route }) => {
   return (

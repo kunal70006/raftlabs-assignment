@@ -22,6 +22,7 @@ const PostComponent: React.FC<PostProps> = ({
     variables: {
       id: parseInt(post.id),
     },
+    // dont wanna cache this
     fetchPolicy: "network-only",
   });
 

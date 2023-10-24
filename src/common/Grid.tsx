@@ -1,6 +1,7 @@
 import { twMerge } from "tailwind-merge";
+import { ComponentWithClassNameAndChildrenProps } from "../types";
 
-const Grid: React.FC<{ children: React.ReactNode; className?: string }> = ({
+const Grid: React.FC<ComponentWithClassNameAndChildrenProps> = ({
   children,
   className,
 }) => {
