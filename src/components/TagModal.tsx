@@ -2,9 +2,41 @@ import { Dialog, Transition } from "@headlessui/react";
 import { Fragment, useState } from "react";
 import { TagModalProps } from "../types";
 import Button from "../common/Button";
+import { useMutation } from "@apollo/client";
+import { createTagMutation } from "../graphql/mutations";
+import useUser from "../hooks/useUser";
+import toast from "react-hot-toast";
 
-const TagModal: React.FC<TagModalProps> = ({ closeModal, isOpen }) => {
+const TagModal: React.FC<TagModalProps> = ({ closeModal, isOpen, postId }) => {
+  const user = useUser();
+
   const [username, setUsername] = useState("");
+
+  const [createTagMut] = useMutation(createTagMutation(), {
+    onCompleted(data) {
+      console.log(data);
+      setUsername("");
+    },
+    onError(error) {
+      toast.error(error.message);
+      setUsername("");
+    },
+  });
+
+  async function handleTag() {
+    if (username.length > 0) {
+      await createTagMut({
+        variables: {
+          tagObj: {
+            post_id: postId,
+            tagged_by: user?.id,
+            tagged_user: username,
+          },
+        },
+      });
+    }
+  }
+
   return (
     <Transition appear show={isOpen} as={Fragment}>
       <Dialog as="div" className="relative z-10" onClose={closeModal}>
@@ -53,7 +85,9 @@ const TagModal: React.FC<TagModalProps> = ({ closeModal, isOpen }) => {
                     required
                   />
                 </div>
-                <Button>Tag user</Button>
+                <Button onClick={handleTag} disabled={username.length === 0}>
+                  Tag user
+                </Button>
               </Dialog.Panel>
             </Transition.Child>
           </div>

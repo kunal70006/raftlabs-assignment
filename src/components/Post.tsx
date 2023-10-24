@@ -36,7 +36,11 @@ const PostComponent: React.FC<{
   return (
     <>
       {isModalOpen ? (
-        <TagModal isOpen={isModalOpen} closeModal={closeModal} />
+        <TagModal
+          isOpen={isModalOpen}
+          closeModal={closeModal}
+          postId={parseInt(post.id)}
+        />
       ) : null}
       <div
         className="bg-neutral-600 rounded-lg text-base p-4 flex flex-col gap-2 justify-between"

@@ -50,3 +50,13 @@ export function createCommentMutation() {
   }
 `
 }
+
+export function createTagMutation() {
+  return gql`
+  mutation createTag($tagObj:[tagsInsertInput!]!){
+    insertIntotagsCollection(objects:$tagObj){
+      affectedCount
+    }
+  }
+  `
+}

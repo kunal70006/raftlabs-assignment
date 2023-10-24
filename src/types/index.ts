@@ -44,4 +44,5 @@ export interface ButtonProps {
 export interface TagModalProps {
   isOpen: boolean
   closeModal: () => void
+  postId: number
 }
