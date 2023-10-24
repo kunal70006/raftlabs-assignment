@@ -60,3 +60,9 @@ export interface TaggedPost {
   posts: PostCollection;
   profiles: Pick<UserProfile, "username">;
 }
+
+export interface PostProps {
+  post: PostCollection;
+  enableUserToPostComments?: boolean;
+  enableTag?: boolean;
+}

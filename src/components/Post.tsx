@@ -1,6 +1,6 @@
 import { useQuery } from "@apollo/client";
 import { getCommentsByPostIDQuery } from "../graphql/queries";
-import { Comment, PostCollection } from "../types";
+import type { Comment, PostProps } from "../types";
 import { toast } from "react-hot-toast";
 import { useState } from "react";
 import useLoadImage from "../hooks/usePostImage";
@@ -11,11 +11,11 @@ import Input from "./Input";
 import Button from "../common/Button";
 import TagModal from "./TagModal";
 
-const PostComponent: React.FC<{
-  post: PostCollection;
-  enableUserToPostComments?: boolean;
-  enableTag?: boolean;
-}> = ({ post, enableUserToPostComments = false, enableTag = false }) => {
+const PostComponent: React.FC<PostProps> = ({
+  post,
+  enableUserToPostComments = false,
+  enableTag = false,
+}) => {
   const imageURL = useLoadImage(post);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { data, loading, error } = useQuery(getCommentsByPostIDQuery(), {
