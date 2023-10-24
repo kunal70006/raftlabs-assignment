@@ -59,9 +59,9 @@ const PostComponent: React.FC<PostProps> = ({
           postId={parseInt(post.id)}
         />
       ) : null}
-      <div>
+      <div className="min-h-[500px] pb-4">
         <div
-          className="bg-neutral-600 rounded-lg text-base p-4 flex flex-col gap-2 justify-between min-h-[500px]"
+          className="bg-neutral-600 rounded-lg text-base p-4 flex flex-col gap-2 justify-between h-full"
           key={post.id}
         >
           <div className="grow overflow-hidden">
