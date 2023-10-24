@@ -9,11 +9,14 @@ import useUser from "../hooks/useUser";
 import { toast } from "react-hot-toast";
 import { useState } from "react";
 import { getAllProfilesQuery } from "../graphql/queries";
+import { useNavigate } from "react-router-dom";
+import SubContainer from "../common/SubContainer";
 
 const FollowUserCard: React.FC<{
   data: UserProfile;
 }> = ({ data }) => {
   const user = useUser();
+  const navigate = useNavigate();
   const [toggle, setToggle] = useState(false);
 
   const isUserFollowing = user?.following?.includes(data!.id!);
@@ -50,9 +53,10 @@ const FollowUserCard: React.FC<{
         handleUpdateFollowerCountMut({
           variables: {
             id: data.id,
-            follower_count: parseInt(data!.follower_count!) - 1,
+            follower_count: data!.follower_count! - 1,
           },
         });
+        navigate(0);
       });
     } else {
       const newFollowers = user?.following
@@ -61,18 +65,20 @@ const FollowUserCard: React.FC<{
       await handleFollowersMut({
         variables: { id: user?.id, following: newFollowers },
       }).then(() => {
+        console.log(data, "then");
         handleUpdateFollowerCountMut({
           variables: {
             id: data.id,
-            follower_count: parseInt(data!.follower_count!) + 1,
+            follower_count: data!.follower_count! + 1,
           },
         });
+        navigate(0);
       });
     }
   }
 
   return (
-    <div className="bg-neutral-800 rounded-lg p-8 flex xl:w-[20vw] lg:w-[25vw] w-[90vw] md:w-[45vw] flex-col">
+    <SubContainer className="flex xl:w-[20vw] lg:w-[25vw] w-[90vw] md:w-[45vw] flex-col">
       <div className="flex justify-between w-ful text-lg">
         <p className="">{data.username}</p>
         <p className="">{data.follower_count}</p>
@@ -86,7 +92,7 @@ const FollowUserCard: React.FC<{
       >
         {isUserFollowing || toggle ? "Unfollow" : "Follow"}
       </button>
-    </div>
+    </SubContainer>
   );
 };
 

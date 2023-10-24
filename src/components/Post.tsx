@@ -43,7 +43,7 @@ const PostComponent: React.FC<{
         />
       ) : null}
       <div
-        className="bg-neutral-600 rounded-lg text-base p-4 flex flex-col gap-2 justify-between"
+        className="bg-neutral-600 rounded-lg text-base p-4 flex flex-col gap-2 justify-between min-h-[500px]"
         key={post.id}
       >
         <div className="grow overflow-hidden">

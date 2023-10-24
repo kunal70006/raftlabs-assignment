@@ -9,11 +9,11 @@ export interface ComponentWithOnlyChildrenProp {
 }
 
 export interface UserProfile {
-  id?: string;
-  updated_at?: string;
-  username?: string;
-  follower_count?: string;
-  following?: string[];
+  id: string;
+  updated_at: string | null;
+  username: string;
+  follower_count: number;
+  following: string[] | null;
 }
 
 export interface Post {
@@ -34,15 +34,29 @@ export interface Comment {
   post_id: string;
 }
 
-export interface ButtonProps {
-  className?: string
-  disabled?: boolean
-  children?: React.ReactNode
-  onClick?: () => void
+export interface ButtonProps extends ComponentWithOnlyChildrenProp {
+  className?: string;
+  disabled?: boolean;
+
+  onClick?: () => void;
 }
 
 export interface TagModalProps {
-  isOpen: boolean
-  closeModal: () => void
-  postId: number
+  isOpen: boolean;
+  closeModal: () => void;
+  postId: number;
+}
+
+export interface ComponentWithClassNameAndChildrenProps
+  extends ComponentWithOnlyChildrenProp {
+  className?: string;
+}
+
+export interface TaggedPost {
+  id: string;
+  post_id: string;
+  tagged_by: string;
+  tagged_user: string;
+  posts: PostCollection;
+  profiles: Pick<UserProfile, "username">;
 }

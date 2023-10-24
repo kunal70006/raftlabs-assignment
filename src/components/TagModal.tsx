@@ -13,8 +13,7 @@ const TagModal: React.FC<TagModalProps> = ({ closeModal, isOpen, postId }) => {
   const [username, setUsername] = useState("");
 
   const [createTagMut] = useMutation(createTagMutation(), {
-    onCompleted(data) {
-      console.log(data);
+    onCompleted() {
       setUsername("");
     },
     onError(error) {

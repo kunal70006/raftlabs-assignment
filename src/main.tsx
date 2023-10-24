@@ -11,6 +11,6 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
     <GraphQLProvider>
       <RouterProvider router={router} />
     </GraphQLProvider>
-    <Toaster />
+    <Toaster toastOptions={{ className: "bg-neutral-800 text-white" }} />
   </React.StrictMode>
 );

@@ -3,6 +3,7 @@ import Homepage from "../pages/Home";
 import ErrorPage from "../pages/Error";
 import AuthProvider from "../providers/SupabaseProvider";
 import Profile from "../pages/Profile";
+import Tags from "../pages/Tags";
 
 const router = createBrowserRouter([
   {
@@ -19,6 +20,15 @@ const router = createBrowserRouter([
     element: (
       <AuthProvider>
         <Profile />
+      </AuthProvider>
+    ),
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: "/tags",
+    element: (
+      <AuthProvider>
+        <Tags />
       </AuthProvider>
     ),
     errorElement: <ErrorPage />,

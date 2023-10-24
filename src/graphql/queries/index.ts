@@ -59,10 +59,8 @@ export function getAllProfilesQuery() {
 
 export function getAllPostsQuery() {
   return gql`
-    query getAllPosts{
-      postsCollection(
-        orderBy: [{ created_at: AscNullsFirst }]
-      ) {
+    query getAllPosts {
+      postsCollection(orderBy: [{ created_at: AscNullsFirst }]) {
         edges {
           node {
             created_at
@@ -71,6 +69,34 @@ export function getAllPostsQuery() {
             author
             user_id
             id
+          }
+        }
+      }
+    }
+  `;
+}
+
+export function getTagsByUserIDQuery() {
+  return gql`
+    query getTagsByUserID($username: ID!) {
+      tagsCollection(filter: { tagged_user: { eq: $username } }) {
+        edges {
+          node {
+            posts {
+              id
+              created_at
+              title
+              media_path
+              author
+              user_id
+            }
+            profiles {
+              username
+            }
+            id
+            post_id
+            tagged_by
+            tagged_user
           }
         }
       }

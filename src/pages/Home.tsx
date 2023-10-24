@@ -8,6 +8,8 @@ import { UserProfile } from "../types";
 import FollowUserCard from "../components/FollowUserCard";
 import Grid from "../common/Grid";
 import HomeFeed from "../components/HomeFeed";
+import Title from "../common/Title";
+import SubContainer from "../common/SubContainer";
 
 const Homepage = () => {
   const user = useUser();
@@ -30,7 +32,7 @@ const Homepage = () => {
   return (
     <RootLayout>
       <Container>
-        <h1 className="text-4xl">People you might wanna follow</h1>
+        <Title>People you might wanna follow</Title>
         <div className="flex mt-4">
           {error ? (
             <div className="flex items-center justify-center">
@@ -43,7 +45,7 @@ const Homepage = () => {
           <div className="flex items-center justify-center">
             <Grid>
               {followerSuggestions &&
-                followerSuggestions.profilesCollection.edges.map(
+                followerSuggestions?.profilesCollection?.edges?.map(
                   (account: { node: UserProfile }, idx: number) => (
                     <FollowUserCard data={account.node} key={idx} />
                   )
@@ -51,10 +53,10 @@ const Homepage = () => {
             </Grid>
           </div>
         </div>
-        <div className="p-8 bg-neutral-800 rounded-lg">
+        <SubContainer>
           <h2 className="text-2xl">Posts</h2>
           <HomeFeed />
-        </div>
+        </SubContainer>
       </Container>
     </RootLayout>
   );

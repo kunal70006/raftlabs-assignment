@@ -10,11 +10,12 @@ import {
 import uniqid from "uniqid";
 import Loader from "../common/Loader";
 import { SupabaseClient } from "../clients/Supabase.client";
-import toast from "react-hot-toast/headless";
+import toast from "react-hot-toast";
 import { getPostsByUserIDQuery } from "../graphql/queries";
 import PostComponent from "../components/Post";
 import Container from "../common/Container";
 import Grid from "../common/Grid";
+import SubContainer from "../common/SubContainer";
 
 const DEFAULT_POST = {
   author: "",
@@ -23,9 +24,17 @@ const DEFAULT_POST = {
   user_id: "",
 } as const;
 
+const DEFAUL_USER: UserProfile = {
+  follower_count: 0,
+  following: null,
+  id: "",
+  username: "",
+  updated_at: null,
+} as const;
+
 const Profile = () => {
   const supaUser = useUser();
-  const [user, setUser] = useState<null | UserProfile>(null);
+  const [user, setUser] = useState<UserProfile>(DEFAUL_USER);
   const [isLoading, setIsLoading] = useState(false);
   const [isCreatePostUploadInProgress, setIsCreatePostUploadInProgress] =
     useState(false);
@@ -78,6 +87,9 @@ const Profile = () => {
         author: supaUser.username!,
         user_id: supaUser.id!,
       }));
+      if (!supaUser.username) {
+        toast("Please add a username");
+      }
     }
   }, [supaUser]);
 
@@ -131,7 +143,7 @@ const Profile = () => {
         <div>
           <h1 className="text-4xl">Profile</h1>
         </div>
-        <div className="bg-neutral-800 rounded-lg p-8">
+        <SubContainer>
           <h2 className="text-2xl">Personal Information</h2>
           <div className="flex gap-4 items-baseline mt-2">
             <p className="mt-4">Username:</p>
@@ -163,9 +175,9 @@ const Profile = () => {
           ) : (
             <Loader />
           )}
-        </div>
+        </SubContainer>
 
-        <div className="bg-neutral-800 rounded-lg p-8">
+        <SubContainer>
           <h2 className="text-2xl">Create Post</h2>
           <div className="flex gap-4 items-baseline mt-2">
             <p className="mt-4">Title:</p>
@@ -197,9 +209,9 @@ const Profile = () => {
           ) : (
             <Loader />
           )}
-        </div>
+        </SubContainer>
 
-        <div className="bg-neutral-800 rounded-lg p-8">
+        <SubContainer>
           <h2 className="text-2xl">All Posts</h2>
           <Grid>
             {postData &&
@@ -209,7 +221,7 @@ const Profile = () => {
                 )
               )}
           </Grid>
-        </div>
+        </SubContainer>
       </Container>
     </RootLayout>
   );
